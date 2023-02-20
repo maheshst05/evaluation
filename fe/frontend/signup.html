@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<a href="">login</a><br><br>
+<a href="">signup</a><br><br>
+<a href="">delete</a><br><br>
+<a href="">update</a><br><br>
+<a href="">get</a>
+
+<br><br><br><br>
+    signup
+    <form action="" id="form">
+
+<input type="text" id="name" placeholder="name"><br><br>
+<input type="email" id="email" placeholder="emial"><br><br>
+<input type="gender" id="gender" placeholder="gender"> <br><br>
+<input type="password" id="pass" placeholder="pass"><br><br>
+<input type="text" id="age" placeholder="aeg"><br><br>
+<input type="city" id="city" placeholder="city"><br><br>
+<input type="submit">
+    </form>
+</body>
+</html>
+<script>
+
+    let form = document.getElementById("form")
+    form.addEventListener("submit",(e)=>{
+        e.preventDefault()
+        const payload={
+            name:document.getElementById("name").value,
+            email:document.getElementById("email").value,
+            gender:document.getElementById("gender").value,
+            password:document.getElementById("pass").value,
+            age:document.getElementById("age").value,
+            city:document.getElementById("city").value
+        }
+
+        fetch("http://localhost:9090/users/register",{
+    method:"POST",
+    headers:{
+        "Content-type":"application/json"
+    },
+    body:JSON.stringify(payload)
+})
+.then(res=>res.json())
+.then(res=>alert(res.msg))
+.catch(err=>console.log(err))
+  
+
+    })
+</script>
